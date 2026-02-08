@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @keyframes shutter-top {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-100%);
+        }
+    }
+
+    @keyframes shutter-bottom {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(100%);
+        }
+    }
+
+    .shutter {
+        animation-duration: 1.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+    .shutter-top {
+        animation-name: shutter-top;
+    }
+
+    .shutter-bottom {
+        animation-name: shutter-bottom;
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .delay-200 {
+        animation-delay: 200ms;
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
