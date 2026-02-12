@@ -45,7 +45,8 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        //
+        $gallery->load('photos');
+        return view('admin.galleries.show', compact('gallery'));
     }
 
     /**

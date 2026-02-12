@@ -19,7 +19,7 @@
         @endif
 
         <div class="bg-white shadow-md rounded-lg p-6">
-            <form action="{{ route('admin.achievements.update', $achievement->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.achievements.update', $achievement->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">

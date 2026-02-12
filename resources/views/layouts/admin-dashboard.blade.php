@@ -22,11 +22,10 @@
         <!-- Backdrop for mobile sidebar -->
         <div x-show="sidebarOpen" x-transition.opacity.duration.500ms class="fixed inset-0 bg-gray-900 bg-opacity-75 z-20 md:hidden" @click="sidebarOpen = false"></div>
 
-        <!-- Sidebar -->
-        <div class="fixed z-30 inset-y-0 left-0 w-64 transform bg-white shadow-xl border-r border-gray-200 overflow-y-auto transition ease-in-out duration-300"
-            :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }"
-            @click.away="sidebarOpen = false">
-            <div class="flex items-center justify-center px-4 py-6">
+                    <!-- Sidebar -->
+                    <div class="fixed z-30 inset-y-0 left-0 w-64 transform bg-white shadow-xl border-r border-gray-200 overflow-y-auto transition ease-in-out duration-300 md:hidden"
+                        :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }"
+                        @click.away="sidebarOpen = false">            <div class="flex items-center justify-center px-4 py-6">
                 <h2 class="text-2xl font-semibold text-blue-600">{{ config('app.name', 'Laravel') }} Admin</h2>
                 <button class="text-gray-500 focus:outline-none md:hidden" @click="sidebarOpen = false">
                     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

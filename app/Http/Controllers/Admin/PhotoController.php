@@ -46,7 +46,7 @@ class PhotoController extends Controller
             'file_path' => $path,
         ]);
 
-        return redirect()->route('admin.galleries.photos.index', $gallery)->with('success', 'Photo uploaded successfully.');
+        return redirect()->route('admin.galleries.show', $gallery)->with('success', 'Photo uploaded successfully.');
     }
 
     /**
@@ -60,7 +60,7 @@ class PhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Photo $photo)
+    public function edit(Gallery $gallery, Photo $photo)
     {
         return view('admin.photos.edit', compact('photo'));
     }
@@ -68,7 +68,7 @@ class PhotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, Gallery $gallery, Photo $photo)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -88,19 +88,19 @@ class PhotoController extends Controller
 
         $photo->update($data);
 
-        return redirect()->route('admin.galleries.photos.index', $photo->gallery)->with('success', 'Photo updated successfully.');
+        return redirect()->route('admin.galleries.show', $photo->gallery)->with('success', 'Photo updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo $photo)
+    public function destroy(Gallery $gallery, Photo $photo)
     {
         // Delete photo from storage
         Storage::disk('public')->delete($photo->file_path);
 
         $photo->delete();
 
-        return redirect()->route('admin.galleries.photos.index', $photo->gallery)->with('success', 'Photo deleted successfully.');
+        return redirect()->route('admin.galleries.show', $photo->gallery)->with('success', 'Photo deleted successfully.');
     }
 }

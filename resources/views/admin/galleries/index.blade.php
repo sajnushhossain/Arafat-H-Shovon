@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.admin-dashboard')
 
 @section('title', 'Galleries')
 
@@ -44,7 +44,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="{{ route('admin.galleries.edit', $gallery->slug) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                                <a href="{{ route('admin.galleries.photos.index', $gallery->slug) }}" class="text-green-600 hover:text-green-900 mr-3">Manage Photos</a>
+                                <a href="{{ route('admin.galleries.show', $gallery->slug) }}" class="text-green-600 hover:text-green-900 mr-3">Manage Photos</a>
                                 <form action="{{ route('admin.galleries.destroy', $gallery->slug) }}" method="POST" class="inline-block">
                                     @csrf
                                     @method('DELETE')
