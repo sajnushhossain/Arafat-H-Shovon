@@ -9,18 +9,28 @@
         <form action="{{ route('admin.galleries.photos.update', [$photo->gallery, $photo]) }}" method="POST" enctype="multipart/form-data" class="bg-white p-8 rounded-lg shadow-lg">
             @csrf
             @method('PUT')
+<div class="mb-6">
+    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
+    <input type="text" id="title" name="title" value="{{ old('title', $photo->title) }}" required
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('title') border-red-500 @enderror">
+    @error('title')
+        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+    @enderror
+</div>
 
-            <div class="mb-6">
-                <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
-                <input type="text" id="title" name="title" value="{{ old('title', $photo->title) }}" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('title') border-red-500 @enderror">
-                @error('title')
-                    <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
-                @enderror
-            </div>
+<div class="mb-6">
+    <label for="url" class="block text-gray-700 text-sm font-bold mb-2">URL (Optional)</label>
+    <input type="url" id="url" name="url" value="{{ old('url', $photo->url) }}" placeholder="https://example.com"
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('url') border-red-500 @enderror">
+    @error('url')
+        <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+    @enderror
+</div>
 
-            <div class="mb-6">
-                <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+<div class="mb-6">
+    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+...
+
                 <textarea id="description" name="description" rows="4"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('description') border-red-500 @enderror">{{ old('description', $photo->description) }}</textarea>
                 @error('description')

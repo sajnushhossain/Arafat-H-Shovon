@@ -14,6 +14,7 @@ class Photo extends Model
         'title',
         'description',
         'file_path',
+        'url',
     ];
 
     public function gallery()

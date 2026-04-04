@@ -33,11 +33,12 @@ class QualificationController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'year' => 'nullable|string|max:255',
         ]);
 
         Qualification::create($request->all());
 
-        return redirect()->route('admin.qualifications.index')->with('success', 'Qualification created successfully.');
+        return redirect()->route('admin.qualifications.index')->with('success', 'Award & Recognition created successfully.');
     }
 
     /**
@@ -56,11 +57,12 @@ class QualificationController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'year' => 'nullable|string|max:255',
         ]);
 
         $qualification->update($request->all());
 
-        return redirect()->route('admin.qualifications.index')->with('success', 'Qualification updated successfully.');
+        return redirect()->route('admin.qualifications.index')->with('success', 'Award & Recognition updated successfully.');
     }
 
     /**
@@ -70,6 +72,6 @@ class QualificationController extends Controller
     {
         $qualification->delete();
 
-        return redirect()->route('admin.qualifications.index')->with('success', 'Qualification deleted successfully.');
+        return redirect()->route('admin.qualifications.index')->with('success', 'Award & Recognition deleted successfully.');
     }
 }

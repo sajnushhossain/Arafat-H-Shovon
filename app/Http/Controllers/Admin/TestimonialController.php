@@ -36,7 +36,7 @@ class TestimonialController extends Controller
             'company' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'quote' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:51200',
         ]);
 
         $imagePath = null;
@@ -73,7 +73,7 @@ class TestimonialController extends Controller
             'company' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
             'quote' => 'required|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:51200',
         ]);
 
         $data = $request->only(['author', 'company', 'location', 'quote']);

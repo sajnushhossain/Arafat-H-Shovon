@@ -44,13 +44,15 @@
             <a href="/" class="text-2xl md:text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="hover:text-gray-300 transition duration-300">About</a>
+                <a href="{{ route('about-myself') }}" class="hover:text-gray-300 transition duration-300">About Myself</a>
+                <a href="{{ route('blogs.index') }}" class="hover:text-gray-300 transition duration-300">Blogs</a>
+                <a href="#international-projects" class="hover:text-gray-300 transition duration-300">International Projects</a>
                 <a href="#achievements" class="hover:text-gray-300 transition duration-300">Achievements</a>
                 <a href="#qualification" class="hover:text-gray-300 transition duration-300">Qualification</a>
                 <a href="#team" class="hover:text-gray-300 transition duration-300">Team</a>
                 <a href="#testimonials" class="hover:text-gray-300 transition duration-300">Testimonials</a>
-                <a href="#contact" class="hover:text-gray-300 transition duration-300">Contact</a>
                 <!-- <a href="{{ route('admin.login') }}"
-                    class="rounded-md px-3 py-2 ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] duration-300">Admin Login</a> -->
+                    class="hover:text-gray-300 transition duration-300">Admin Login</a> -->
             </div>
             <button class="md:hidden flex items-center text-white focus:outline-none" id="mobile-menu-button" aria-expanded="false">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -64,6 +66,9 @@
         <div class="hidden md:hidden" id="mobile-menu-items">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">About</a>
+                <a href="{{ route('about-myself') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">About Myself</a>
+                <a href="{{ route('blogs.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Blogs</a>
+                <a href="#international-projects" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">International Projects</a>
                 <a href="#achievements" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Achievements</a>
                 <a href="#qualification" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Qualification</a>
                 <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Team</a>
@@ -78,36 +83,119 @@
     <header class="bg-gradient-to-r from-primary to-secondary text-white text-center py-20 md:py-32 relative overflow-hidden" style="padding-top: 80px !important;">
         <div class="shutter shutter-top absolute top-0 left-0 w-full h-1/2 bg-black z-20"></div>
         <div class="shutter shutter-bottom absolute bottom-0 left-0 w-full h-1/2 bg-black z-20"></div>
-        <div class="container mx-auto px-4 relative z-10">
+        <div class="container mx-auto px-4 relative z-10" style="margin-top: 35px; margin-bottom: 40px !important;">
             <img src="{{ $admin->profile_picture_url ?? 'https://via.placeholder.com/150' }}" alt="Arafat H Shovon" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto mb-6 border-4 border-white shadow-lg transform transition duration-500 hover:scale-105">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in-up">{{ $settings->get('hero_title')->value ?? 'Capturing Moments, Creating Memories' }}</h1>
-            <p class="text-lg md:text-2xl mb-8 animate-fade-in-up delay-200">{{ $settings->get('hero_subtitle')->value ?? 'The world through my lens. Explore my collection of photographs.' }}</p>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in-up">{{ $settings->get('hero_title')?->value ?? 'Capturing Moments, Creating Memories' }}</h1>
+            <p class="text-lg md:text-2xl mb-8 animate-fade-in-up delay-200">{{ $settings->get('hero_subtitle')?->value ?? 'The world through my lens. Explore my collection of photographs.' }}</p>
             <a href="{{ route('galleries.index') }}" target="_blank"
                 class="bg-white text-primary font-bold py-3 px-8 md:py-4 md:px-10 rounded-full hover:bg-gray-200 transition duration-300 transform hover:scale-105 shadow-lg">View My Work</a>
         </div>
     </header>
 
-    <!-- About and Skills Section -->
-    <section id="about" class="py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 group">
-                    <img src="{{ $settings->get('about_me_picture_url')->value ?? 'https://via.placeholder.com/800x600' }}" alt="About Arafat H Shovon" class="rounded-lg shadow-2xl transition duration-500 transform group-hover:scale-105">
-                </div>
-                <div class="md:w-1/2 md:pl-16 mt-8 md:mt-0">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
-                    <p class="text-lg md:text-xl text-gray-300 mb-6">{{ $settings->get('about_me_text')->value ?? 'My name is Arafat H Shovon. I am a passionate photographer with a love for capturing the beauty of the world around me. My journey into photography started years ago, and since then, I\'ve been on a constant quest to find and frame moments that tell a story.' }}</p>
-                    <h3 class="text-3xl md:text-4xl font-bold mt-10 mb-6">My Skills</h3>
-                    <div class="space-y-4">
-                        @foreach (explode(',', $settings->get('skills_list')->value ?? 'Portrait Photography,Landscape Photography,Event Photography,Advanced Photo Editing') as $skill)
-                            <div class="flex items-center hover:translate-x-2 transition duration-300">
-                                <span class="text-primary text-xl md:text-2xl mr-4">&#9679;</span>
-                                <span class="text-lg md:text-xl">{{ trim($skill) }}</span>
+    <!-- Cover-Style About Section -->
+    <section id="about" class="relative w-full min-h-[3500px] lg:h-[500vh] flex items-end overflow-hidden">
+        <!-- Background Cover Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="{{ $settings->get('about_me_picture_url')?->value ?? 'https://via.placeholder.com/1920x1080' }}" 
+                 alt="Cover" 
+                 class="w-full h-full object-cover">
+            <!-- Dynamic Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/30 to-transparent"></div>
+        </div>
+
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-12 py-12 md:py-24 relative z-10">
+            <div class="max-w-6xl">
+                <!-- Text on the Left and Bottom -->
+                <div class="space-y-6 md:space-y-10 animate-fade-in-up">
+                    <div>
+                        <span class="inline-block px-5 py-1.5 mb-6 text-xs font-bold tracking-[0.4em] uppercase bg-primary text-white rounded-sm">
+                            Creative Story
+                        </span>
+                        <h2 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8">
+                            About <span class="text-primary">Me.</span>
+                        </h2>
+                        <p class="text-gray-200 text-lg md:text-2xl leading-relaxed max-w-3xl font-medium drop-shadow-2xl text-left">
+                            {{ $settings->get('about_me_text')?->value ?? 'My name is Arafat H Shovon. I am a passionate photographer with a love for capturing the beauty of the world around me. I am flexible, reliable and possess excellent time keeping skills. I am an enthusiastic, self-motivated,
+                            responsible and hard-working person. I am a mature team worker and adaptable to all challenging
+                            situations.' }}
+                        </p>
+                    </div>
+
+                    <!-- Minimal Skills & Tools placed at the bottom-left -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 pt-8 border-t border-white/10">
+                        <!-- Skills -->
+                        <div class="space-y-4 text-left">
+                            <h3 class="text-4xl font-black uppercase tracking-widest text-primary">Mastery</h3>
+                            <div class="space-y-2">
+                                @forelse ($skills as $skill)
+                                    <div class="space-y-1 group">
+                                        <div class="flex justify-between text-lg font-black uppercase tracking-widest text-white/90">
+                                            <span>{{ $skill->name }}</span>
+                                            <span class="text-primary">{{ $skill->percentage }}%</span>
+                                        </div>
+                                        <div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+                                            <div class="h-full bg-primary transition-all duration-1000" style="width: {{ $skill->percentage }}%"></div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p class="text-gray-400 text-xs italic">No skills defined.</p>
+                                @endforelse
                             </div>
-                        @endforeach
+                        </div>
+
+                        <!-- Software -->
+                        <div class="space-y-4 text-left">
+                            <h3 class="text-4xl font-black uppercase tracking-widest text-primary">Technical Stack</h3>
+                            <div class="flex flex-wrap gap-2">
+                                @forelse ($softwares as $software)
+                                    <div class="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-xl border border-white/10 rounded-sm text-sm font-black uppercase tracking-widest text-white hover:bg-primary hover:border-primary transition-all cursor-default group">
+                                        @if($software->icon)
+                                            <i class="{{ $software->icon }} text-primary group-hover:text-white text-base"></i>
+                                        @endif
+                                        {{ $software->name }}
+                                    </div>
+                                @empty
+                                    <p class="text-gray-400 text-xs italic text-left">No tools added.</p>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- International Projects Section -->
+    <section id="international-projects" class="py-12 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">International Projects</h2>
+            @if ($internationalProjects->count() > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @foreach ($internationalProjects as $project)
+                        <div class="bg-gradient-to-br from-[rgb(138,32,11)] to-[rgb(44,26,23)] backdrop-blur-sm border border-white/20 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-primary flex flex-col h-full">
+                            @if ($project->photos->count() > 0)
+                                <a href="{{ route('international-projects.show', $project->slug) }}" class="block overflow-hidden h-64">
+                                    <img src="{{ Storage::url($project->photos->first()->file_path) }}" alt="{{ $project->title }}" class="w-full h-full object-cover">
+                                </a>
+                            @else
+                                <div class="w-full h-64 bg-white/5 flex items-center justify-center">
+                                    <i class="fas fa-project-diagram text-6xl text-gray-600"></i>
+                                </div>
+                            @endif
+                            <div class="p-6 flex flex-col flex-grow">
+                                <h3 class="text-2xl font-bold mb-3 text-white">{{ $project->title }}</h3>
+                                <p class="text-gray-300 text-lg mb-6 flex-grow">{{ Str::limit($project->description, 120) }}</p>
+                                <div class="mt-auto">
+                                    <a href="{{ route('international-projects.show', $project->slug) }}" class="inline-block bg-white text-primary font-bold py-2 px-6 rounded-full hover:bg-gray-200 transition duration-300">View Project</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <p class="text-center text-gray-300">No international projects found.</p>
+            @endif
         </div>
     </section>
 
@@ -121,9 +209,15 @@
                         @php
                             $colSpanClass = ($index % 3 == 0) ? 'lg:col-span-2' : '';
                         @endphp
-                        <a href="{{ Storage::url($portfolio->image_path) }}" data-lightbox="portfolio" data-title="{{ $portfolio->title }}" class="block w-full h-auto md:h-64 overflow-hidden rounded-lg hover:opacity-75 transition-opacity duration-300 {{ $colSpanClass }}">
-                            <img src="{{ Storage::url($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="w-full h-full object-cover">
-                        </a>
+                        @if($portfolio->url)
+                            <a href="{{ $portfolio->url }}" target="_blank" class="block w-full h-auto md:h-64 overflow-hidden rounded-lg hover:opacity-75 transition-opacity duration-300 {{ $colSpanClass }}">
+                                <img src="{{ Storage::url($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="w-full h-full object-cover">
+                            </a>
+                        @else
+                            <a href="{{ Storage::url($portfolio->image_path) }}" data-lightbox="portfolio" data-title="{{ $portfolio->title }}" class="block w-full h-auto md:h-64 overflow-hidden rounded-lg hover:opacity-75 transition-opacity duration-300 {{ $colSpanClass }}">
+                                <img src="{{ Storage::url($portfolio->image_path) }}" alt="{{ $portfolio->title }}" class="w-full h-full object-cover">
+                            </a>
+                        @endif
                     @endforeach
                 </div>
             @else
@@ -159,18 +253,19 @@
         </div>
     </section>
 
-    <!-- Qualification Section -->
-    <section id="qualification" class="py-12">
+    <!-- Awards & Recognition Section -->
+    <section id="qualification" class="py-12 bg-secondary">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16" style="margin-top: 50px !important;">Qualification</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">Awards & Recognition</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                 @forelse ($qualifications as $qualification)
-                    <div class="bg-gradient-to-br from-[rgb(138,32,11)] to-[rgb(44,26,23)] backdrop-blur-sm border border-white/20 rounded-lg shadow-lg p-6 transform transition duration-300 hover:scale-105 hover:shadow-primary">
-                        <h3 class="text-2xl font-bold mb-2">{{ $qualification->title }}</h3>
-                        <p class="text-gray-300 text-lg">{{ $qualification->description }}</p>
+                    <div class="group bg-gradient-to-br from-[rgb(138,32,11)] to-[rgb(44,26,23)] backdrop-blur-sm border border-white/10 rounded-2xl p-8 transform transition duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 flex flex-col h-full relative overflow-hidden border-t-4 border-t-primary">
+                        <span class="text-primary font-black text-2xl mb-4 tracking-tighter opacity-80">{{ $qualification->year }}</span>
+                        <h3 class="text-xl font-extrabold mb-4 text-white leading-tight group-hover:text-primary transition-colors duration-300">{{ $qualification->title }}</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed flex-grow font-medium">{{ $qualification->description }}</p>
                     </div>
                 @empty
-                    <p class="text-center col-span-full text-gray-300">No qualifications found.</p>
+                    <p class="text-center col-span-full text-gray-400 italic">No awards found.</p>
                 @endforelse
             </div>
         </div>
@@ -246,18 +341,18 @@
                         Passionate photographer capturing life's fleeting moments with creativity and a unique perspective.
                     </p>
                     <div class="flex justify-center md:justify-start space-x-4">
-                        @if($settings->get('facebook_link')->value)
-                            <a href="{{ $settings->get('facebook_link')->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
+                        @if($settings->get('facebook_link')?->value)
+                            <a href="{{ $settings->get('facebook_link')?->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
                                 <i class="fab fa-facebook-f fa-lg"></i>
                             </a>
                         @endif
-                        @if($settings->get('instagram_link')->value)
-                            <a href="{{ $settings->get('instagram_link')->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
+                        @if($settings->get('instagram_link')?->value)
+                            <a href="{{ $settings->get('instagram_link')?->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
                                 <i class="fab fa-instagram fa-lg"></i>
                             </a>
                         @endif
-                        @if($settings->get('twitter_link')->value)
-                            <a href="{{ $settings->get('twitter_link')->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
+                        @if($settings->get('twitter_link')?->value)
+                            <a href="{{ $settings->get('twitter_link')?->value }}" target="_blank" class="text-gray-400 hover:text-primary transition duration-300">
                                 <i class="fab fa-twitter fa-lg"></i>
                             </a>
                         @endif
@@ -269,6 +364,7 @@
                     <h3 class="text-lg md:text-xl font-bold mb-4">Quick Links</h3>
                     <ul class="space-y-3">
                         <li><a href="#about" class="text-gray-400 hover:text-primary transition duration-300">About</a></li>
+                        <li><a href="#international-projects" class="text-gray-400 hover:text-primary transition duration-300">International Projects</a></li>
                         <li><a href="#achievements" class="text-gray-400 hover:text-primary transition duration-300">Achievements</a></li>
                         <li><a href="#qualification" class="text-gray-400 hover:text-primary transition duration-300">Qualification</a></li>
                         <li><a href="#team" class="text-gray-400 hover:text-primary transition duration-300">Team</a></li>
@@ -282,11 +378,11 @@
                     <ul class="space-y-3 text-gray-400">
                         <li class="flex items-center justify-center md:justify-start">
                             <i class="fas fa-phone-alt mr-3"></i>
-                            <span>{{ $settings->get('contact_phone')->value ?? '+123 456 7890' }}</span>
+                            <span>{{ $settings->get('contact_phone')?->value ?? '+123 456 7890' }}</span>
                         </li>
                         <li class="flex items-center justify-center md:justify-start">
                             <i class="fas fa-envelope mr-3"></i>
-                            <a href="mailto:{{ $settings->get('contact_email')->value ?? 'contact@arafatshovon.com' }}" class="hover:text-primary transition duration-300">{{ $settings->get('contact_email')->value ?? 'contact@arafatshovon.com' }}</a>
+                            <a href="mailto:{{ $settings->get('contact_email')?->value ?? 'contact@arafatshovon.com' }}" class="hover:text-primary transition duration-300">{{ $settings->get('contact_email')?->value ?? 'contact@arafatshovon.com' }}</a>
                         </li>
                     </ul>
                 </div>
@@ -301,7 +397,5 @@
     </footer>
     @stack('scripts')
 </body>
-
-</html>
 
 </html>

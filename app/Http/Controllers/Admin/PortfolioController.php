@@ -34,6 +34,7 @@ class PortfolioController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'url' => 'nullable|string|max:255',
             'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:51200', // Max 50MB
         ]);
 
@@ -43,6 +44,7 @@ class PortfolioController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'image_path' => $path,
+            'url' => $this->formatUrl($request->url),
         ]);
 
         return redirect()->route('admin.portfolios.index')->with('success', 'Portfolio item added successfully.');
@@ -57,5 +59,18 @@ class PortfolioController extends Controller
         $portfolio->delete();
 
         return redirect()->route('admin.portfolios.index')->with('success', 'Portfolio item deleted successfully.');
+    }
+
+    /**
+     * Format URL to ensure it has a protocol.
+     */
+    private function formatUrl($url)
+    {
+        if (!$url) return null;
+        
+        if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+            $url = "http://" . $url;
+        }
+        return $url;
     }
 }

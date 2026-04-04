@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\AboutPhoto;
+use App\Models\Education;
+use App\Models\Language;
+use App\Models\Reference;
+use App\Models\Skill;
+use App\Models\Software;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +33,13 @@ class SettingController extends Controller
     public function edit()
     {
         $settings = Setting::all()->keyBy('key');
-        return view('admin.settings.edit', compact('settings'));
+        $aboutPhotos = AboutPhoto::orderBy('sort_order')->get();
+        $education = Education::latest()->get();
+        $languages = Language::all();
+        $references = Reference::all();
+        $skills = Skill::all();
+        $softwares = Software::all();
+        return view('admin.settings.edit', compact('settings', 'aboutPhotos', 'education', 'languages', 'references', 'skills', 'softwares'));
     }
 
     /**
@@ -44,7 +56,126 @@ class SettingController extends Controller
             );
         }
 
-        return redirect()->route('admin.settings.index')->with('success', 'Settings updated successfully.');
+        return redirect()->route('admin.settings.edit')->with('success', 'Settings updated successfully.');
+    }
+
+    public function storeEducation(Request $request)
+    {
+        $request->validate([
+            'year' => 'required|string',
+            'degree' => 'required|string',
+            'institution' => 'required|string',
+        ]);
+        Education::create($request->all());
+        return back()->with('success', 'Education added successfully.');
+    }
+
+    public function destroyEducation(Education $education)
+    {
+        $education->delete();
+        return back()->with('success', 'Education deleted.');
+    }
+
+    public function storeLanguage(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'level' => 'required|string',
+        ]);
+        Language::create($request->all());
+        return back()->with('success', 'Language added successfully.');
+    }
+
+    public function destroyLanguage(Language $language)
+    {
+        $language->delete();
+        return back()->with('success', 'Language deleted.');
+    }
+
+    public function storeReference(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'position' => 'required|string',
+            'contact' => 'required|string',
+        ]);
+        Reference::create($request->all());
+        return back()->with('success', 'Reference added successfully.');
+    }
+
+    public function destroyReference(Reference $reference)
+    {
+        $reference->delete();
+        return back()->with('success', 'Reference deleted.');
+    }
+
+    public function storeSkill(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'percentage' => 'required|integer|min:0|max:100',
+        ]);
+        Skill::create($request->all());
+        return back()->with('success', 'Skill added successfully.');
+    }
+
+    public function destroySkill(Skill $skill)
+    {
+        $skill->delete();
+        return back()->with('success', 'Skill deleted.');
+    }
+
+    public function storeSoftware(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'icon' => 'nullable|string',
+        ]);
+        Software::create($request->all());
+        return back()->with('success', 'Software added successfully.');
+    }
+
+    public function destroySoftware(Software $software)
+    {
+        $software->delete();
+        return back()->with('success', 'Software deleted.');
+    }
+
+    /**
+     * Store new about photos.
+     */
+    public function storeAboutPhoto(Request $request)
+    {
+        $request->validate([
+            'images' => 'required|array',
+            'images.*' => 'image|max:10240',
+        ]);
+
+        if ($request->hasFile('images')) {
+            $maxSort = AboutPhoto::max('sort_order') ?? 0;
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('about_photos', 'public');
+                AboutPhoto::create([
+                    'image_path' => $path,
+                    'sort_order' => ++$maxSort,
+                ]);
+            }
+        }
+
+        return back()->with('success', 'Images uploaded successfully.');
+    }
+
+    /**
+     * Remove an about photo.
+     */
+    public function destroyAboutPhoto(AboutPhoto $aboutPhoto)
+    {
+        if (Storage::disk('public')->exists($aboutPhoto->image_path)) {
+            Storage::disk('public')->delete($aboutPhoto->image_path);
+        }
+        $aboutPhoto->delete();
+
+        return back()->with('success', 'Image deleted successfully.');
     }
 
     /**

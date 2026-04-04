@@ -16,10 +16,17 @@ class IsSuperAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->is_super_admin) {
-            return $next($request);
+        if (Auth::check()) {
+            if (Auth::user()->is_super_admin) {
+                return $next($request);
+            }
+            
+            Auth::logout();
+            return redirect()->route('admin.login')->withErrors([
+                'email' => 'You do not have admin access.',
+            ]);
         }
 
-        abort(403, 'Unauthorized action.'); 
+        return redirect()->route('admin.login')->with('error', 'Please login to access the admin area.');
     }
 }

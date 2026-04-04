@@ -35,6 +35,7 @@ class PhotoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'url' => 'nullable|string|max:255',
             'photo' => 'required|image|max:51200', // Max 50MB
         ]);
 
@@ -44,6 +45,7 @@ class PhotoController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'file_path' => $path,
+            'url' => $this->formatUrl($request->url),
         ]);
 
         return redirect()->route('admin.galleries.show', $gallery)->with('success', 'Photo uploaded successfully.');
@@ -73,10 +75,12 @@ class PhotoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'url' => 'nullable|string|max:255',
             'photo' => 'nullable|image|max:51200', // Max 50MB
         ]);
 
         $data = $request->only(['title', 'description']);
+        $data['url'] = $this->formatUrl($request->url);
 
         if ($request->hasFile('photo')) {
             // Delete old photo
@@ -102,5 +106,18 @@ class PhotoController extends Controller
         $photo->delete();
 
         return redirect()->route('admin.galleries.show', $photo->gallery)->with('success', 'Photo deleted successfully.');
+    }
+
+    /**
+     * Format URL to ensure it has a protocol.
+     */
+    private function formatUrl($url)
+    {
+        if (!$url) return null;
+        
+        if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+            $url = "http://" . $url;
+        }
+        return $url;
     }
 }

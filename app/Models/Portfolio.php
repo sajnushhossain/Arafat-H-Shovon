@@ -13,5 +13,6 @@ class Portfolio extends Model
         'image_path',
         'title',
         'description',
+        'url',
     ];
 }

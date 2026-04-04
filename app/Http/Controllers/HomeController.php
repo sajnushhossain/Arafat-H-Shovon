@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Achievement;
 use App\Models\Gallery;
+use App\Models\InternationalProject;
 use App\Models\Portfolio;
 use App\Models\Qualification;
 use App\Models\Setting;
+use App\Models\Skill;
+use App\Models\Software;
 use App\Models\TeamMember;
 use App\Models\Testimonial;
 use App\Models\User;
@@ -23,6 +26,9 @@ class HomeController extends Controller
         $testimonials = Testimonial::all();
         $galleries = Gallery::with('photos')->get();
         $portfolios = Portfolio::latest()->take(4)->get();
+        $internationalProjects = InternationalProject::with('photos')->latest()->get();
+        $skills = Skill::all();
+        $softwares = Software::all();
         $admin = User::find(1);
 
 
@@ -34,6 +40,9 @@ class HomeController extends Controller
             'testimonials',
             'galleries',
             'portfolios',
+            'internationalProjects',
+            'skills',
+            'softwares',
             'admin'
         ));
     }

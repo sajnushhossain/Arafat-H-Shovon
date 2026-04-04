@@ -4,6 +4,8 @@
             <a href="/" class="text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon</a>
             <div class="hidden md:flex items-center space-x-8" id="mobile-menu">
                 <a href="/#about" class="hover:text-gray-300 transition duration-300">About</a>
+                <a href="{{ route('about-myself') }}" class="hover:text-gray-300 transition duration-300">About Myself</a>
+                <a href="{{ route('blogs.index') }}" class="hover:text-gray-300 transition duration-300">Blogs</a>
                 <a href="/#achievements" class="hover:text-gray-300 transition duration-300">Achievements</a>
                 <a href="/#qualification" class="hover:text-gray-300 transition duration-300">Qualification</a>
                 <a href="/#team" class="hover:text-gray-300 transition duration-300">Team</a>
@@ -22,6 +24,8 @@
         <div class="hidden md:hidden" id="mobile-menu-items">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="/#about" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">About</a>
+                <a href="{{ route('about-myself') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">About Myself</a>
+                <a href="{{ route('blogs.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Blogs</a>
                 <a href="/#achievements" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Achievements</a>
                 <a href="/#qualification" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Qualification</a>
                 <a href="/#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Team</a>

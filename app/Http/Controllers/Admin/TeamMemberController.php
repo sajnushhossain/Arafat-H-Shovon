@@ -34,7 +34,7 @@ class TeamMemberController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:51200',
         ]);
 
         $imagePath = null;
@@ -67,7 +67,7 @@ class TeamMemberController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'role' => 'required|string|max:255',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:51200',
         ]);
 
         $data = $request->only(['name', 'role']);

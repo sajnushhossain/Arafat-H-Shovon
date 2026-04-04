@@ -76,17 +76,19 @@
 @endpush
 
 @section('content')
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
             <!-- Dashboard Cards/Widgets can go here -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-blue-500">
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Galleries</h3>
-                <p class="text-4xl font-bold text-blue-600">5</p>
-                {{-- Optional: Add an icon here --}}
+                <p class="text-4xl font-bold text-blue-600">{{ \App\Models\Gallery::count() }}</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-green-500">
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Photos</h3>
-                <p class="text-4xl font-bold text-blue-600">25</p>
-                {{-- Optional: Add an icon here --}}
+                <p class="text-4xl font-bold text-green-600">{{ \App\Models\Photo::count() }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-l-4 border-purple-500">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Blogs</h3>
+                <p class="text-4xl font-bold text-purple-600">{{ \App\Models\Blog::count() }}</p>
             </div>
         </div>
     

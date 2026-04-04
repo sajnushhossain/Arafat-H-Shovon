@@ -6,6 +6,7 @@
     <title>Admin - @yield('title', 'Dashboard')</title>
     @stack('styles')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 <body class="bg-gray-100 font-sans antialiased">
     <div class="flex flex-col min-h-screen">
@@ -41,6 +42,9 @@
                             <a href="{{ route('admin.galleries.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.galleries.*')) bg-blue-50 text-blue-700 font-medium @endif">
                                 Galleries
                             </a>
+                            <a href="{{ route('admin.international-projects.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.international-projects.*')) bg-blue-50 text-blue-700 font-medium @endif">
+                                International Projects
+                            </a>
                             <a href="{{ route('admin.portfolios.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.portfolios.*')) bg-blue-50 text-blue-700 font-medium @endif">
                                 Portfolio
                             </a>
@@ -48,7 +52,7 @@
                                 Achievements
                             </a>
                             <a href="{{ route('admin.qualifications.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.qualifications.*')) bg-blue-50 text-blue-700 font-medium @endif">
-                                Qualifications
+                                Awards & Recognition
                             </a>
                             <a href="{{ route('admin.team-members.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.team-members.*')) bg-blue-50 text-blue-700 font-medium @endif">
                                 Team Members
@@ -56,8 +60,14 @@
                             <a href="{{ route('admin.testimonials.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.testimonials.*')) bg-blue-50 text-blue-700 font-medium @endif">
                                 Testimonials
                             </a>
+                            <a href="{{ route('admin.blogs.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.blogs.*')) bg-blue-50 text-blue-700 font-medium @endif">
+                                Blogs
+                            </a>
+                            <a href="{{ route('admin.profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.profile.*')) bg-blue-50 text-blue-700 font-medium @endif">
+                                Set Email & Password
+                            </a>
                             <a href="{{ route('admin.settings.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200 @if(request()->routeIs('admin.settings.*')) bg-blue-50 text-blue-700 font-medium @endif">
-                                Settings
+                                About Myself & Settings
                             </a>
                         </div>
                         <div class="border-t border-gray-100"></div>
