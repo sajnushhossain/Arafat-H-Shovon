@@ -40,8 +40,8 @@
 
     <!-- Navigation -->
     <div class="bg-gradient-to-r from-primary to-secondary text-white sticky top-0 z-50 shadow-lg">
-        <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
-            <a href="/" class="text-2xl md:text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon</a>
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl md:text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon </br><span class="italic font-serif" style="font-size: 1.25rem; margin-top: 0.5rem;">International</span></a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="hover:text-gray-300 transition duration-300">About</a>
                 <a href="{{ route('about-myself') }}" class="hover:text-gray-300 transition duration-300">About Myself</a>
@@ -74,8 +74,8 @@
                 <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Team</a>
                 <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimonials</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Contact</a>
-                <a href="{{ route('admin.login') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Admin Login</a>
+                <!-- <a href="{{ route('admin.login') }}"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Admin Login</a> -->
             </div>
         </div>
     </div>
@@ -336,7 +336,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <!-- Column 1: Brand -->
                 <div class="text-center md:text-left">
-                    <h3 class="text-xl md:text-2xl font-bold mb-4">Arafat H Shovon</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Arafat H Shovon <span class="italic font-serif">International</span></h3>
                     <p class="text-gray-400 mb-4">
                         Passionate photographer capturing life's fleeting moments with creativity and a unique perspective.
                     </p>
@@ -392,7 +392,7 @@
         <div class="bg-gray-800 py-4">
             <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left text-gray-500">
                 <div class="mb-2 md:mb-0">
-                    &copy; {{ date('Y') }} Arafat H Shovon. All Rights Reserved.
+                    &copy; {{ date('Y') }} Arafat H Shovon <span class="italic font-serif text-sm">International</span>. All Rights Reserved.
                 </div>
                 <div>
                     Developed by: <a href="#" class="hover:text-primary transition duration-300">Ayesha.SH</a>

@@ -1,7 +1,7 @@
     <!-- Navigation -->
     <div class="bg-gradient-to-r from-primary to-secondary text-white sticky top-0 z-50 shadow-lg">
         <nav class="container mx-auto px-4 py-6 flex justify-between items-center">
-            <a href="/" class="text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon</a>
+            <a href="/" class="text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon <span class="italic font-serif">International</span></a>
             <div class="hidden md:flex items-center space-x-8" id="mobile-menu">
                 <a href="/#about" class="hover:text-gray-300 transition duration-300">About</a>
                 <a href="{{ route('about-myself') }}" class="hover:text-gray-300 transition duration-300">About Myself</a>
