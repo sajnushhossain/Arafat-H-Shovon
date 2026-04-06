@@ -51,8 +51,8 @@
                 <a href="#qualification" class="hover:text-gray-300 transition duration-300">Qualification</a>
                 <a href="#team" class="hover:text-gray-300 transition duration-300">Team</a>
                 <a href="#testimonials" class="hover:text-gray-300 transition duration-300">Testimonials</a>
-                <!-- <a href="{{ route('admin.login') }}"
-                    class="hover:text-gray-300 transition duration-300">Admin Login</a> -->
+                <a href="{{ route('admin.login') }}"
+                    class="hover:text-gray-300 transition duration-300">Admin Login</a>
             </div>
             <button class="md:hidden flex items-center text-white focus:outline-none" id="mobile-menu-button" aria-expanded="false">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -74,8 +74,8 @@
                 <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Team</a>
                 <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Testimonials</a>
                 <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Contact</a>
-                <!-- <a href="{{ route('admin.login') }}"
-                    class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Admin Login</a> -->
+                <a href="{{ route('admin.login') }}"
+                    class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700">Admin Login</a>
             </div>
         </div>
     </div>
@@ -390,8 +390,13 @@
         </div>
         <!-- Bottom Bar -->
         <div class="bg-gray-800 py-4">
-            <div class="container mx-auto px-4 text-center text-gray-500">
-                &copy; {{ date('Y') }} Arafat H Shovon. All Rights Reserved.
+            <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left text-gray-500">
+                <div class="mb-2 md:mb-0">
+                    &copy; {{ date('Y') }} Arafat H Shovon. All Rights Reserved.
+                </div>
+                <div>
+                    Developed by: <a href="#" class="hover:text-primary transition duration-300">Ayesha.SH</a>
+                </div>
             </div>
         </div>
     </footer>
