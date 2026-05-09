@@ -39,7 +39,7 @@
 <body class="font-sans antialiased bg-secondary text-white">
 
     <!-- Navigation -->
-    <div class="bg-gradient-to-r from-primary to-secondary text-white sticky top-0 z-50 shadow-lg">
+    <div class="bg-gradient-to-r from-primary to-secondary text-white z-50 shadow-lg">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="/" class="text-2xl md:text-3xl font-bold transition duration-300 hover:text-gray-300">Arafat H Shovon </br><span class="italic font-serif" style="font-size: 1.25rem; margin-top: 0.5rem;">International</span></a>
             <div class="hidden md:flex items-center space-x-8">
@@ -93,21 +93,21 @@
     </header>
 
     <!-- Cover-Style About Section -->
-    <section id="about" class="relative w-full min-h-[3500px] lg:h-[500vh] flex items-end overflow-hidden">
-        <!-- Background Cover Image -->
+    <section id="about" class="relative w-full min-h-[600px] flex items-center overflow-hidden py-20 bg-secondary">
+        <!-- Background Cover Image - Full Width -->
         <div class="absolute inset-0 z-0">
             <img src="{{ $settings->get('about_me_picture_url')?->value ?? 'https://via.placeholder.com/1920x1080' }}" 
                  alt="Cover" 
                  class="w-full h-full object-cover">
             <!-- Dynamic Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/70 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/30 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary via-secondary/90 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-secondary/60 via-transparent to-transparent"></div>
         </div>
 
-        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-12 py-12 md:py-24 relative z-10">
+        <div class="w-full max-w-[1600px] mx-auto px-4 md:px-12 relative z-10">
             <div class="max-w-6xl">
                 <!-- Text on the Left and Bottom -->
-                <div class="space-y-6 md:space-y-10 animate-fade-in-up">
+                <div class="space-y-6 md:space-y-10 animate-fade-in-up"> 
                     <div>
                         <span class="inline-block px-5 py-1.5 mb-6 text-xs font-bold tracking-[0.4em] uppercase bg-primary text-white rounded-sm">
                             Creative Story
